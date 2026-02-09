@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine? 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('blob:https://mega.nz/6b8b4e64-adb3-470d-b893-0b95bd7a0606') center/cover no-repeat fixed;
+            background-color: #1a1a2e;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(3px);
+            z-index: -1;
+        }
+
+        .music-player {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 15px 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            max-width: 90%;
+        }
+
+        .music-player audio {
+            max-width: 200px;
+        }
+
+        .music-icon {
+            font-size: 1.5em;
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .equalizer {
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            height: 20px;
+        }
+
+        .equalizer-bar {
+            width: 4px;
+            background: linear-gradient(to top, #f093fb, #f5576c);
+            border-radius: 2px;
+            animation: equalize 0.8s ease-in-out infinite;
+        }
+
+        .equalizer-bar:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .equalizer-bar:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .equalizer-bar:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .equalizer-bar:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes equalize {
+            0%, 100% { height: 5px; }
+            50% { height: 20px; }
+        }
+
+        .music-player:hover {
+            transform: translateX(-50%) scale(1.05);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            max-width: 500px;
+            width: 100%;
+            margin-top: 80px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(233, 30, 99, 0.5),
+                         0 0 20px rgba(255, 255, 255, 0.3);
+            margin-bottom: 20px;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        .heart {
+            font-size: 4em;
+            margin: 20px 0;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .message {
+            font-size: 1.2em;
+            color: #ffffff;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            margin: 20px 0;
+            min-height: 30px;
+            font-weight: 500;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .yes-btn {
+            background: rgba(245, 87, 108, 0.4);
+            backdrop-filter: blur(15px);
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .yes-btn:hover {
+            transform: scale(1.1);
+            background: rgba(245, 87, 108, 0.6);
+            box-shadow: 0 6px 20px rgba(245, 87, 108, 0.5),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        }
+
+        .no-btn {
+            background: rgba(168, 237, 234, 0.3);
+            backdrop-filter: blur(15px);
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            transition: all 0.5s ease;
+        }
+
+        .no-btn:hover {
+            background: rgba(254, 214, 227, 0.4);
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .popup-content {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-top: 1px solid rgba(255, 255, 255, 0.6);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 90%;
+            max-height: 90%;
+            overflow: auto;
+            animation: slideIn 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        }
+
+        @keyframes slideIn {
+            from { transform: scale(0.7); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .popup-content h2 {
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(233, 30, 99, 0.6),
+                         0 0 20px rgba(255, 255, 255, 0.4);
+            margin-bottom: 20px;
+        }
+
+        .popup-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .close-btn {
+            background: rgba(102, 126, 234, 0.4);
+            backdrop-filter: blur(15px);
+            color: white;
+            padding: 12px 30px;
+            margin-top: 15px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .close-btn:hover {
+            transform: scale(1.05);
+            background: rgba(102, 126, 234, 0.6);
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .heart {
+                font-size: 3em;
+            }
+
+            .container {
+                padding: 30px 20px;
+            }
+
+            button {
+                padding: 12px 30px;
+                font-size: 1em;
+            }
+
+            .music-player {
+                padding: 10px 15px;
+                gap: 10px;
+            }
+
+            .music-player audio {
+                max-width: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="music-player">
+        <div class="equalizer">
+            <div class="equalizer-bar"></div>
+            <div class="equalizer-bar"></div>
+            <div class="equalizer-bar"></div>
+            <div class="equalizer-bar"></div>
+        </div>
+        <audio controls id="bgMusic">
+            <source src="https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3" type="audio/mpeg">
+            OOPS! Looks like your phone cant play the audio baby sowyyyy.
+        </audio>
+    </div>
+
+    <div class="container">
+        <h1>Heyy My Love Will You Be My Valentine? 💕</h1>
+        <div class="heart">❤️</div>
+        <div class="message" id="message"></div>
+        <div class="buttons">
+            <button class="yes-btn" onclick="handleYes()">Yes! 😍</button>
+            <button class="no-btn" id="noBtn" onclick="handleNo()">No? 😢</button>
+        </div>
+    </div>
+
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <h2>Yayyy! hehehe i knew it mwahhhhh 💖</h2>
+            <img src="https://th.bing.com/th/id/R.153c59185cc57bf81b69c4a0e692eaae?rik=i16%2fafUlwkqv1w&pid=ImgRaw&r=0" alt="Happy Valentine">
+            <button class="close-btn" onclick="closePopup()">Go Back!</button>
+        </div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const message = document.getElementById('message');
+        const bgMusic = document.getElementById('bgMusic');
+        const equalizerBars = document.querySelectorAll('.equalizer-bar');
+        let clickCount = 0;
+        let currentScale = 1;
+
+        const messages = [
+            "Why are you saying no mylove? 🥺",
+            "Are you sure babyy? 🤔",
+            "Hmmm... 😏",
+            "C'mon baby! 💕",
+            "Please? 🥹",
+            "Think about it! 💭",
+            "Really? 😢",
+            "Last chance honey boo! ⏰",
+            "That's it, I'm removing the NO button! 😤"
+        ];
+
+        // Pause/play equalizer animation based on audio
+        bgMusic.addEventListener('play', () => {
+            equalizerBars.forEach(bar => {
+                bar.style.animationPlayState = 'running';
+            });
+        });
+
+        bgMusic.addEventListener('pause', () => {
+            equalizerBars.forEach(bar => {
+                bar.style.animationPlayState = 'paused';
+            });
+        });
+
+        // Start with paused animation
+        equalizerBars.forEach(bar => {
+            bar.style.animationPlayState = 'paused';
+        });
+
+        function handleNo() {
+            if (clickCount < messages.length) {
+                message.textContent = messages[clickCount];
+                message.style.color = '#ffffff';
+                
+                clickCount++;
+                currentScale -= 0.1;
+                
+                if (clickCount === messages.length) {
+                    setTimeout(() => {
+                        noBtn.style.opacity = '0';
+                        noBtn.style.transform = 'scale(0)';
+                        setTimeout(() => {
+                            noBtn.style.display = 'none';
+                        }, 500);
+                    }, 1000);
+                } else {
+                    noBtn.style.transform = `scale(${currentScale})`;
+                }
+            }
+        }
+
+        function handleYes() {
+            document.getElementById('popup').style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        // Close popup when clicking outside
+        document.getElementById('popup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePopup();
+            }
+        });
+    </script>
+</body>
+</html>
