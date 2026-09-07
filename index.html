@@ -277,44 +277,35 @@
 
 <div class="stars" id="stars"></div>
 <div class="petal-wrap" id="petals"></div>
-
+ 
 <header class="header">
   <p class="eyebrow">A special message for you</p>
   <h1>Happy Birthday,<br><span>MyBabyy</span> 🎂</h1>
   <p class="age">Turning 19 · With all the love in the world</p>
 </header>
-
+ 
 <div class="photo-strip">
+  <!-- 📸 PHOTO 1 — replace YOUR_PHOTO_1_URL with your image link -->
   <div class="photo-frame" id="frame1">
-    <input type="file" accept="image/*" onchange="loadPhoto(event,'frame1')">
-    <div class="photo-placeholder">
-      <span class="ph-icon">📷</span>
-      <span class="ph-label">Add photo</span>
-    </div>
+    <img src="https://photos.app.goo.gl/4CsHben2x7usBTx17" alt="Angel photo 1"
+         onerror="this.parentNode.innerHTML=fallback('📷')">
   </div>
+  <!-- 📸 PHOTO 2 — replace YOUR_PHOTO_2_URL with your image link -->
   <div class="photo-frame" id="frame2">
-    <input type="file" accept="image/*" onchange="loadPhoto(event,'frame2')">
-    <div class="photo-placeholder">
-      <span class="ph-icon">🌸</span>
-      <span class="ph-label">Add photo</span>
-    </div>
+    <img src="https://photos.app.goo.gl/iYr237nHQ32tZD3V7" alt="Angel photo 2"
+         onerror="this.parentNode.innerHTML=fallback('🌸')">
   </div>
+  <!-- 📸 PHOTO 3 — replace YOUR_PHOTO_3_URL with your image link -->
   <div class="photo-frame" id="frame3">
-    <input type="file" accept="image/*" onchange="loadPhoto(event,'frame3')">
-    <div class="photo-placeholder">
-      <span class="ph-icon">💫</span>
-      <span class="ph-label">Add photo</span>
-    </div>
+    <img src="https://photos.app.goo.gl/vFmtwtGwKf8jFh988" alt="Angel photo 3"
+         onerror="this.parentNode.innerHTML=fallback('💫')">
   </div>
+  <!-- 📸 PHOTO 4 — replace YOUR_PHOTO_4_URL with your image link -->
   <div class="photo-frame" id="frame4">
-    <input type="file" accept="image/*" onchange="loadPhoto(event,'frame4')">
-    <div class="photo-placeholder">
-      <span class="ph-icon">✨</span>
-      <span class="ph-label">Add photo</span>
-    </div>
+    <img src="https://photos.app.goo.gl/e9iKbLvVAUcSMnx79" alt="Angel photo 4"
+         onerror="this.parentNode.innerHTML=fallback('✨')">
   </div>
 </div>
-
 <div class="book-scene">
   <div class="book" id="book">
 
